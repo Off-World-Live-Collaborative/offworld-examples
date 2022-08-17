@@ -1,0 +1,85 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "v0.108.0-ue5.0.0",
+	"FriendlyName": "Off World Live Livestreaming Toolkit",
+	"Description": "Tools for live-streaming video and audio into and out of Unreal using Spout and NDI",
+	"Category": "Livestreaming",
+	"CreatedBy": "OffWorldLive",
+	"CreatedByURL": "https://offworld.live/",
+	"DocsURL": "https://knowledge.offworld.live/",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/92307b570d474fbc87592b973ce82e3b",
+	"SupportURL": "support@offworld.live",
+	"EngineVersion": "5.0.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"SupportedTargetPlatforms": [
+		"Win64"
+	],
+	"Modules": [
+		{
+			"Name": "LivestreamingToolkit",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "OWLCamera",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "OWL360Camera",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "OWLSpout",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "OWLNDI",
+			"Type": "Runtime",
+			"LoadingPhase": "None",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "LivestreamingToolkitEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
+		},
+		{
+			"Name": "LivestreamingToolkitShaders",
+			"Type": "Runtime",
+			"LoadingPhase": "PostConfigInit"
+		},
+		{
+			"Name": "OWLMedia",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "MediaIOFramework",
+			"Enabled": true
+		}
+	]
+}
