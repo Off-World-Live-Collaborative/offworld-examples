@@ -18,6 +18,10 @@
 			"SupportedTargetPlatforms": [
 				"Win64"
 			]
+		},
+		{
+			"Name": "Composure",
+			"Enabled": true
 		}
 	]
 }
