@@ -70,10 +70,10 @@ void EmptyLinkFunctionForGeneratedCodeOWL360CaptureComponent() {}
 		{ "RS_360_1440p.DisplayName", "1440p" },
 		{ "RS_360_1440p.Name", "EStreamResolution_360::RS_360_1440p" },
 		{ "RS_360_1440p.ToolTip", "Cubemap: 2160x1440p; Equirectangular:  2880x1440p; Dome: 1440x1440p;" },
-		{ "RS_360_2160p.Comment", "/* Cubemap: 4320x2160p; Equirectangular:  3840x2160p; Dome: 2160x2160p; */" },
+		{ "RS_360_2160p.Comment", "/* Cubemap: 3240x2160p; Equirectangular:  4320x2160p; Dome: 2160x2160p; */" },
 		{ "RS_360_2160p.DisplayName", "2160p" },
 		{ "RS_360_2160p.Name", "EStreamResolution_360::RS_360_2160p" },
-		{ "RS_360_2160p.ToolTip", "Cubemap: 4320x2160p; Equirectangular:  3840x2160p; Dome: 2160x2160p;" },
+		{ "RS_360_2160p.ToolTip", "Cubemap: 3240x2160p; Equirectangular:  4320x2160p; Dome: 2160x2160p;" },
 		{ "RS_360_240p.Comment", "/* Cubemap: 360x240p; Equirectangular:  480x240p; Dome: 240x240p; */" },
 		{ "RS_360_240p.DisplayName", "240p" },
 		{ "RS_360_240p.Name", "EStreamResolution_360::RS_360_240p" },
@@ -879,7 +879,7 @@ void EmptyLinkFunctionForGeneratedCodeOWL360CaptureComponent() {}
 		{ "ToolTip", "Texture resolution presets for camera render output" },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UOWL360CaptureComponent_Statics::NewProp_StreamResolution = { "StreamResolution", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOWL360CaptureComponent, StreamResolution), Z_Construct_UEnum_OWL360Camera_EStreamResolution_360, METADATA_PARAMS(Z_Construct_UClass_UOWL360CaptureComponent_Statics::NewProp_StreamResolution_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOWL360CaptureComponent_Statics::NewProp_StreamResolution_MetaData)) }; // 1496299133
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UOWL360CaptureComponent_Statics::NewProp_StreamResolution = { "StreamResolution", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOWL360CaptureComponent, StreamResolution), Z_Construct_UEnum_OWL360Camera_EStreamResolution_360, METADATA_PARAMS(Z_Construct_UClass_UOWL360CaptureComponent_Statics::NewProp_StreamResolution_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOWL360CaptureComponent_Statics::NewProp_StreamResolution_MetaData)) }; // 3006856613
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOWL360CaptureComponent_Statics::NewProp_OutputResolution_MetaData[] = {
 		{ "Category", "Off World Live Capture Settings" },
@@ -1228,13 +1228,13 @@ void EmptyLinkFunctionForGeneratedCodeOWL360CaptureComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWL360Camera_Public_OWL360CaptureComponent_h_Statics::EnumInfo[] = {
-		{ EStreamResolution_360_StaticEnum, TEXT("EStreamResolution_360"), &Z_Registration_Info_UEnum_EStreamResolution_360, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1496299133U) },
+		{ EStreamResolution_360_StaticEnum, TEXT("EStreamResolution_360"), &Z_Registration_Info_UEnum_EStreamResolution_360, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3006856613U) },
 		{ E360ProjectionType_StaticEnum, TEXT("E360ProjectionType"), &Z_Registration_Info_UEnum_E360ProjectionType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1392073394U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWL360Camera_Public_OWL360CaptureComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UOWL360CaptureComponent, UOWL360CaptureComponent::StaticClass, TEXT("UOWL360CaptureComponent"), &Z_Registration_Info_UClass_UOWL360CaptureComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UOWL360CaptureComponent), 2897182006U) },
+		{ Z_Construct_UClass_UOWL360CaptureComponent, UOWL360CaptureComponent::StaticClass, TEXT("UOWL360CaptureComponent"), &Z_Registration_Info_UClass_UOWL360CaptureComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UOWL360CaptureComponent), 4173480095U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWL360Camera_Public_OWL360CaptureComponent_h_4271321679(TEXT("/Script/OWL360Camera"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWL360Camera_Public_OWL360CaptureComponent_h_119333643(TEXT("/Script/OWL360Camera"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWL360Camera_Public_OWL360CaptureComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWL360Camera_Public_OWL360CaptureComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWL360Camera_Public_OWL360CaptureComponent_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWL360Camera_Public_OWL360CaptureComponent_h_Statics::EnumInfo));

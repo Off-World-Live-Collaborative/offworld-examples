@@ -65,9 +65,8 @@ private:
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-	virtual void Destroyed() override;
-	virtual void PostInitProperties() override;
 	virtual void BeginDestroy() override;
+	virtual void PostInitProperties() override;
 
 public:
 	virtual bool ShouldTickIfViewportsOnly() const override;

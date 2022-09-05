@@ -14,6 +14,8 @@ public class LivestreamingToolkit : ModuleRules
 
 		bUsePrecompiled = GetOffWorldBoolean("UsePrecompiled", true);
 
+		bool IsStaging = GetOffWorldBoolean("Staging", false);
+
 		PrivateIncludePaths.AddRange(
 			new string[]
 			{
@@ -23,37 +25,6 @@ public class LivestreamingToolkit : ModuleRules
 
 		string AuthUrl = GetOffWorldString("AuthURL", "https://plugin-api.offworld.live");
 		PublicDefinitions.Add("OWL_AUTH_URL=\"" + AuthUrl + "\"");
-
-		string PublicKeyPath = System.Environment.GetEnvironmentVariable("PUBLIC_KEY_FILE_PATH_STAGING");
-		bool IsStaging = GetOffWorldBoolean("Staging", true);
-
-		if (!IsStaging)
-		{
-			PublicKeyPath = System.Environment.GetEnvironmentVariable("PUBLIC_KEY_FILE_PATH_PRODUCTION");
-		}
-
-		// If neither environment variable found, fallback to the local cert (which is staging currently)
-		if (!bUsePrecompiled && (PublicKeyPath == "" || PublicKeyPath == null))
-		{
-			PublicKeyPath = Path.GetFullPath(Path.Combine(ModuleDirectory, "../../server.pub"));
-		}
-
-		if (!bUsePrecompiled) // If precompiled, the public key is already built into the plugin
-		{
-			string PublicKey = File.ReadAllText(PublicKeyPath);
-
-			PublicKey = PublicKey
-				.Replace("-----BEGIN PUBLIC KEY-----", "")
-				.Replace("\n", "")
-				.Replace("-----END PUBLIC KEY-----", "");
-
-			if (PublicKey == null || PublicKey == "")
-			{
-				throw new Exception("No valid public key found");
-			}
-
-			PublicDefinitions.Add("PUBLIC_KEY=" + PublicKey);
-		}
 
 		string ReleaseDate = "2021-07-22T11:22:00.000Z";
 		string ReleaseBuildEnv = System.Environment.GetEnvironmentVariable("RELEASE_BUILD");
@@ -93,6 +64,7 @@ public class LivestreamingToolkit : ModuleRules
 				"RenderCore",
 				"RSA",
 				"OpenSSL",
+				"LivestreamingToolkitShaders",
 				// ... add private dependencies that you statically link with here ...
 			}
 		);
@@ -102,7 +74,38 @@ public class LivestreamingToolkit : ModuleRules
 			PrivateDependencyModuleNames.Add("UnrealEd");
 		}
 
-		RuntimeDependencies.Add(Path.Combine(PluginDirectory, "Utils/AuthCli.exe"), StagedFileType.NonUFS);
+		string AuthAppBase = "owl-licensing-utility";
+		
+		string StagingExecutable = AuthAppBase + ".staging.exe";
+		string ProductionExecutable = AuthAppBase + ".exe";
+
+		string ProductionPath = Path.Combine(PluginDirectory, "Utils", ProductionExecutable);
+		string StagingPath = Path.Combine(PluginDirectory, "Utils", StagingExecutable);
+
+		PublicDefinitions.Add("AUTH_APP_NAME=" + (IsStaging ? StagingExecutable : ProductionExecutable));
+
+		// Check if files exist and then add if they do because the .uplugin
+		// file can't be trusted to tell us when packaging if staging is true or not
+		// because Unreal recreates the uplugin file ignoring fields it doesn't know
+		if (File.Exists(ProductionPath))
+		{
+			RuntimeDependencies.Add(ProductionPath, StagedFileType.NonUFS);
+		}
+
+		if (File.Exists(StagingPath))
+		{
+			RuntimeDependencies.Add(StagingPath, StagedFileType.NonUFS);
+		}
+		else if(IsStaging)
+		{
+			if (IsStaging)
+			{
+				// sanity check that this file exists and throw if it doesn't
+				// (only do this in staging so we don't accidentally create crashes
+				// in user builds
+				throw new Exception(StagingExecutable + " not found at expected path");
+			}
+		}
 	}
 
 	public JsonObject GetOffWorldSettings()

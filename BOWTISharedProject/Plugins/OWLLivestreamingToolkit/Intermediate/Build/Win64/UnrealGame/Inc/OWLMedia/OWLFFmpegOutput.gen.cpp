@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeOWLFFmpegOutput() {}
 	UPackage* Z_Construct_UPackage__Script_OWLMedia();
 	OWLMEDIA_API UEnum* Z_Construct_UEnum_OWLMedia_EOWLDestinationFormat();
 	OWLMEDIA_API UEnum* Z_Construct_UEnum_OWLMedia_EOWLSRTPubKeyLen();
+	OWLMEDIA_API UEnum* Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout();
 	OWLMEDIA_API UScriptStruct* Z_Construct_UScriptStruct_FOWLSRTOptions();
 	OWLMEDIA_API UScriptStruct* Z_Construct_UScriptStruct_FOWLAudioSampleBlock();
 	OWLMEDIA_API UScriptStruct* Z_Construct_UScriptStruct_FOWLEncodedPacket();
@@ -198,6 +199,199 @@ void EmptyLinkFunctionForGeneratedCodeOWLFFmpegOutput() {}
 			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EOWLSRTPubKeyLen.InnerSingleton, Z_Construct_UEnum_OWLMedia_EOWLSRTPubKeyLen_Statics::EnumParams);
 		}
 		return Z_Registration_Info_UEnum_EOWLSRTPubKeyLen.InnerSingleton;
+	}
+	static FEnumRegistrationInfo Z_Registration_Info_UEnum_EOWLAudioChannelLayout;
+	static UEnum* EOWLAudioChannelLayout_StaticEnum()
+	{
+		if (!Z_Registration_Info_UEnum_EOWLAudioChannelLayout.OuterSingleton)
+		{
+			Z_Registration_Info_UEnum_EOWLAudioChannelLayout.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout, Z_Construct_UPackage__Script_OWLMedia(), TEXT("EOWLAudioChannelLayout"));
+		}
+		return Z_Registration_Info_UEnum_EOWLAudioChannelLayout.OuterSingleton;
+	}
+	template<> OWLMEDIA_API UEnum* StaticEnum<EOWLAudioChannelLayout>()
+	{
+		return EOWLAudioChannelLayout_StaticEnum();
+	}
+	struct Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout_Statics
+	{
+		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FEnumParams EnumParams;
+	};
+	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout_Statics::Enumerators[] = {
+		{ "EOWLAudioChannelLayout::ACL_MONO", (int64)EOWLAudioChannelLayout::ACL_MONO },
+		{ "EOWLAudioChannelLayout::ACL_STEREO", (int64)EOWLAudioChannelLayout::ACL_STEREO },
+		{ "EOWLAudioChannelLayout::ACL_2POINT1", (int64)EOWLAudioChannelLayout::ACL_2POINT1 },
+		{ "EOWLAudioChannelLayout::ACL_2_1", (int64)EOWLAudioChannelLayout::ACL_2_1 },
+		{ "EOWLAudioChannelLayout::ACL_SURROUND", (int64)EOWLAudioChannelLayout::ACL_SURROUND },
+		{ "EOWLAudioChannelLayout::ACL_3POINT1", (int64)EOWLAudioChannelLayout::ACL_3POINT1 },
+		{ "EOWLAudioChannelLayout::ACL_4POINT0", (int64)EOWLAudioChannelLayout::ACL_4POINT0 },
+		{ "EOWLAudioChannelLayout::ACL_4POINT1", (int64)EOWLAudioChannelLayout::ACL_4POINT1 },
+		{ "EOWLAudioChannelLayout::ACL_2_2", (int64)EOWLAudioChannelLayout::ACL_2_2 },
+		{ "EOWLAudioChannelLayout::ACL_QUAD", (int64)EOWLAudioChannelLayout::ACL_QUAD },
+		{ "EOWLAudioChannelLayout::ACL_5POINT0", (int64)EOWLAudioChannelLayout::ACL_5POINT0 },
+		{ "EOWLAudioChannelLayout::ACL_5POINT1", (int64)EOWLAudioChannelLayout::ACL_5POINT1 },
+		{ "EOWLAudioChannelLayout::ACL_5POINT0_BACK", (int64)EOWLAudioChannelLayout::ACL_5POINT0_BACK },
+		{ "EOWLAudioChannelLayout::ACL_5POINT1_BACK", (int64)EOWLAudioChannelLayout::ACL_5POINT1_BACK },
+		{ "EOWLAudioChannelLayout::ACL_6POINT0", (int64)EOWLAudioChannelLayout::ACL_6POINT0 },
+		{ "EOWLAudioChannelLayout::ACL_6POINT0_FRONT", (int64)EOWLAudioChannelLayout::ACL_6POINT0_FRONT },
+		{ "EOWLAudioChannelLayout::ACL_HEXAGONAL", (int64)EOWLAudioChannelLayout::ACL_HEXAGONAL },
+		{ "EOWLAudioChannelLayout::ACL_6POINT1", (int64)EOWLAudioChannelLayout::ACL_6POINT1 },
+		{ "EOWLAudioChannelLayout::ACL_6POINT1_BACK", (int64)EOWLAudioChannelLayout::ACL_6POINT1_BACK },
+		{ "EOWLAudioChannelLayout::ACL_6POINT1_FRONT", (int64)EOWLAudioChannelLayout::ACL_6POINT1_FRONT },
+		{ "EOWLAudioChannelLayout::ACL_7POINT0", (int64)EOWLAudioChannelLayout::ACL_7POINT0 },
+		{ "EOWLAudioChannelLayout::ACL_7POINT0_FRONT", (int64)EOWLAudioChannelLayout::ACL_7POINT0_FRONT },
+		{ "EOWLAudioChannelLayout::ACL_7POINT1", (int64)EOWLAudioChannelLayout::ACL_7POINT1 },
+		{ "EOWLAudioChannelLayout::ACL_7POINT1_WIDE", (int64)EOWLAudioChannelLayout::ACL_7POINT1_WIDE },
+		{ "EOWLAudioChannelLayout::ACL_7POINT1_WIDE_BACK", (int64)EOWLAudioChannelLayout::ACL_7POINT1_WIDE_BACK },
+		{ "EOWLAudioChannelLayout::ACL_OCTAGONAL", (int64)EOWLAudioChannelLayout::ACL_OCTAGONAL },
+		{ "EOWLAudioChannelLayout::ACL_HEXADECAGONAL", (int64)EOWLAudioChannelLayout::ACL_HEXADECAGONAL },
+		{ "EOWLAudioChannelLayout::ACL_STEREO_DOWNMIX", (int64)EOWLAudioChannelLayout::ACL_STEREO_DOWNMIX },
+		{ "EOWLAudioChannelLayout::ACL_22POINT2", (int64)EOWLAudioChannelLayout::ACL_22POINT2 },
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout_Statics::Enum_MetaDataParams[] = {
+		{ "ACL_22POINT2.Comment", "/* 24 Channels */" },
+		{ "ACL_22POINT2.DisplayName", "22.2" },
+		{ "ACL_22POINT2.Name", "EOWLAudioChannelLayout::ACL_22POINT2" },
+		{ "ACL_22POINT2.ToolTip", "24 Channels" },
+		{ "ACL_2_1.Comment", "/* 3 Channels */" },
+		{ "ACL_2_1.DisplayName", "2 1" },
+		{ "ACL_2_1.Name", "EOWLAudioChannelLayout::ACL_2_1" },
+		{ "ACL_2_1.ToolTip", "3 Channels" },
+		{ "ACL_2_2.Comment", "/* 4 Channels */" },
+		{ "ACL_2_2.DisplayName", "2 2" },
+		{ "ACL_2_2.Name", "EOWLAudioChannelLayout::ACL_2_2" },
+		{ "ACL_2_2.ToolTip", "4 Channels" },
+		{ "ACL_2POINT1.Comment", "/* 3 Channels */" },
+		{ "ACL_2POINT1.DisplayName", "2.1" },
+		{ "ACL_2POINT1.Name", "EOWLAudioChannelLayout::ACL_2POINT1" },
+		{ "ACL_2POINT1.ToolTip", "3 Channels" },
+		{ "ACL_3POINT1.Comment", "/* 4 Channels */" },
+		{ "ACL_3POINT1.DisplayName", "3.1" },
+		{ "ACL_3POINT1.Name", "EOWLAudioChannelLayout::ACL_3POINT1" },
+		{ "ACL_3POINT1.ToolTip", "4 Channels" },
+		{ "ACL_4POINT0.Comment", "/* 4 Channels */" },
+		{ "ACL_4POINT0.DisplayName", "4.0" },
+		{ "ACL_4POINT0.Name", "EOWLAudioChannelLayout::ACL_4POINT0" },
+		{ "ACL_4POINT0.ToolTip", "4 Channels" },
+		{ "ACL_4POINT1.Comment", "/* 5 Channels */" },
+		{ "ACL_4POINT1.DisplayName", "4.1" },
+		{ "ACL_4POINT1.Name", "EOWLAudioChannelLayout::ACL_4POINT1" },
+		{ "ACL_4POINT1.ToolTip", "5 Channels" },
+		{ "ACL_5POINT0.Comment", "/* 5 Channels */" },
+		{ "ACL_5POINT0.DisplayName", "5.0" },
+		{ "ACL_5POINT0.Name", "EOWLAudioChannelLayout::ACL_5POINT0" },
+		{ "ACL_5POINT0.ToolTip", "5 Channels" },
+		{ "ACL_5POINT0_BACK.Comment", "/* 5 Channels */" },
+		{ "ACL_5POINT0_BACK.DisplayName", "5.0 Back" },
+		{ "ACL_5POINT0_BACK.Name", "EOWLAudioChannelLayout::ACL_5POINT0_BACK" },
+		{ "ACL_5POINT0_BACK.ToolTip", "5 Channels" },
+		{ "ACL_5POINT1.Comment", "/* 6 Channels */" },
+		{ "ACL_5POINT1.DisplayName", "5.1" },
+		{ "ACL_5POINT1.Name", "EOWLAudioChannelLayout::ACL_5POINT1" },
+		{ "ACL_5POINT1.ToolTip", "6 Channels" },
+		{ "ACL_5POINT1_BACK.Comment", "/* 6 Channels */" },
+		{ "ACL_5POINT1_BACK.DisplayName", "5.1 Back" },
+		{ "ACL_5POINT1_BACK.Name", "EOWLAudioChannelLayout::ACL_5POINT1_BACK" },
+		{ "ACL_5POINT1_BACK.ToolTip", "6 Channels" },
+		{ "ACL_6POINT0.Comment", "/* 6 Channels */" },
+		{ "ACL_6POINT0.DisplayName", "6.0" },
+		{ "ACL_6POINT0.Name", "EOWLAudioChannelLayout::ACL_6POINT0" },
+		{ "ACL_6POINT0.ToolTip", "6 Channels" },
+		{ "ACL_6POINT0_FRONT.Comment", "/* 6 Channels */" },
+		{ "ACL_6POINT0_FRONT.DisplayName", "6.0 Front" },
+		{ "ACL_6POINT0_FRONT.Name", "EOWLAudioChannelLayout::ACL_6POINT0_FRONT" },
+		{ "ACL_6POINT0_FRONT.ToolTip", "6 Channels" },
+		{ "ACL_6POINT1.Comment", "/* 7 Channels */" },
+		{ "ACL_6POINT1.DisplayName", "6.1" },
+		{ "ACL_6POINT1.Name", "EOWLAudioChannelLayout::ACL_6POINT1" },
+		{ "ACL_6POINT1.ToolTip", "7 Channels" },
+		{ "ACL_6POINT1_BACK.Comment", "/* 7 Channels */" },
+		{ "ACL_6POINT1_BACK.DisplayName", "6.1 Back" },
+		{ "ACL_6POINT1_BACK.Name", "EOWLAudioChannelLayout::ACL_6POINT1_BACK" },
+		{ "ACL_6POINT1_BACK.ToolTip", "7 Channels" },
+		{ "ACL_6POINT1_FRONT.Comment", "/* 7 Channels */" },
+		{ "ACL_6POINT1_FRONT.DisplayName", "6.1 Front" },
+		{ "ACL_6POINT1_FRONT.Name", "EOWLAudioChannelLayout::ACL_6POINT1_FRONT" },
+		{ "ACL_6POINT1_FRONT.ToolTip", "7 Channels" },
+		{ "ACL_7POINT0.Comment", "/* 7 Channels */" },
+		{ "ACL_7POINT0.DisplayName", "7.0" },
+		{ "ACL_7POINT0.Name", "EOWLAudioChannelLayout::ACL_7POINT0" },
+		{ "ACL_7POINT0.ToolTip", "7 Channels" },
+		{ "ACL_7POINT0_FRONT.Comment", "/* 7 Channels */" },
+		{ "ACL_7POINT0_FRONT.DisplayName", "7.0 Front" },
+		{ "ACL_7POINT0_FRONT.Name", "EOWLAudioChannelLayout::ACL_7POINT0_FRONT" },
+		{ "ACL_7POINT0_FRONT.ToolTip", "7 Channels" },
+		{ "ACL_7POINT1.Comment", "/* 8 Channels */" },
+		{ "ACL_7POINT1.DisplayName", "7.1" },
+		{ "ACL_7POINT1.Name", "EOWLAudioChannelLayout::ACL_7POINT1" },
+		{ "ACL_7POINT1.ToolTip", "8 Channels" },
+		{ "ACL_7POINT1_WIDE.Comment", "/* 8 Channels */" },
+		{ "ACL_7POINT1_WIDE.DisplayName", "7.1 Wide" },
+		{ "ACL_7POINT1_WIDE.Name", "EOWLAudioChannelLayout::ACL_7POINT1_WIDE" },
+		{ "ACL_7POINT1_WIDE.ToolTip", "8 Channels" },
+		{ "ACL_7POINT1_WIDE_BACK.Comment", "/* 8 Channels */" },
+		{ "ACL_7POINT1_WIDE_BACK.DisplayName", "7.1 Wide Back" },
+		{ "ACL_7POINT1_WIDE_BACK.Name", "EOWLAudioChannelLayout::ACL_7POINT1_WIDE_BACK" },
+		{ "ACL_7POINT1_WIDE_BACK.ToolTip", "8 Channels" },
+		{ "ACL_HEXADECAGONAL.Comment", "/* 16 Channels */" },
+		{ "ACL_HEXADECAGONAL.DisplayName", "Hexadecagonal" },
+		{ "ACL_HEXADECAGONAL.Name", "EOWLAudioChannelLayout::ACL_HEXADECAGONAL" },
+		{ "ACL_HEXADECAGONAL.ToolTip", "16 Channels" },
+		{ "ACL_HEXAGONAL.Comment", "/* 6 Channels */" },
+		{ "ACL_HEXAGONAL.DisplayName", "Hexagonal" },
+		{ "ACL_HEXAGONAL.Name", "EOWLAudioChannelLayout::ACL_HEXAGONAL" },
+		{ "ACL_HEXAGONAL.ToolTip", "6 Channels" },
+		{ "ACL_MONO.Comment", "/* 1 Channel */" },
+		{ "ACL_MONO.DisplayName", "Mono" },
+		{ "ACL_MONO.Name", "EOWLAudioChannelLayout::ACL_MONO" },
+		{ "ACL_MONO.ToolTip", "1 Channel" },
+		{ "ACL_OCTAGONAL.Comment", "/* 8 Channels */" },
+		{ "ACL_OCTAGONAL.DisplayName", "Octagonal" },
+		{ "ACL_OCTAGONAL.Name", "EOWLAudioChannelLayout::ACL_OCTAGONAL" },
+		{ "ACL_OCTAGONAL.ToolTip", "8 Channels" },
+		{ "ACL_QUAD.Comment", "/* 4 Channels */" },
+		{ "ACL_QUAD.DisplayName", "Quad" },
+		{ "ACL_QUAD.Name", "EOWLAudioChannelLayout::ACL_QUAD" },
+		{ "ACL_QUAD.ToolTip", "4 Channels" },
+		{ "ACL_STEREO.Comment", "/* 2 Channels */" },
+		{ "ACL_STEREO.DisplayName", "Stereo" },
+		{ "ACL_STEREO.Name", "EOWLAudioChannelLayout::ACL_STEREO" },
+		{ "ACL_STEREO.ToolTip", "2 Channels" },
+		{ "ACL_STEREO_DOWNMIX.Comment", "/* 2 Channels */" },
+		{ "ACL_STEREO_DOWNMIX.DisplayName", "Stereo Downmix" },
+		{ "ACL_STEREO_DOWNMIX.Name", "EOWLAudioChannelLayout::ACL_STEREO_DOWNMIX" },
+		{ "ACL_STEREO_DOWNMIX.ToolTip", "2 Channels" },
+		{ "ACL_SURROUND.Comment", "/* 3 Channels */" },
+		{ "ACL_SURROUND.DisplayName", "Surround" },
+		{ "ACL_SURROUND.Name", "EOWLAudioChannelLayout::ACL_SURROUND" },
+		{ "ACL_SURROUND.ToolTip", "3 Channels" },
+		{ "ModuleRelativePath", "Public/OWLFFmpegOutput.h" },
+	};
+#endif
+	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout_Statics::EnumParams = {
+		(UObject*(*)())Z_Construct_UPackage__Script_OWLMedia,
+		nullptr,
+		"EOWLAudioChannelLayout",
+		"EOWLAudioChannelLayout",
+		Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout_Statics::Enumerators,
+		UE_ARRAY_COUNT(Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout_Statics::Enumerators),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EEnumFlags::None,
+		(uint8)UEnum::ECppForm::EnumClass,
+		METADATA_PARAMS(Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout_Statics::Enum_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout_Statics::Enum_MetaDataParams))
+	};
+	UEnum* Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout()
+	{
+		if (!Z_Registration_Info_UEnum_EOWLAudioChannelLayout.InnerSingleton)
+		{
+			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EOWLAudioChannelLayout.InnerSingleton, Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout_Statics::EnumParams);
+		}
+		return Z_Registration_Info_UEnum_EOWLAudioChannelLayout.InnerSingleton;
 	}
 	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_OWLSRTOptions;
 class UScriptStruct* FOWLSRTOptions::StaticStruct()
@@ -461,6 +655,11 @@ template<> OWLMEDIA_API UScriptStruct* StaticStruct<FOWLFFmpegSettings>()
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_AudioBitrate_MetaData[];
 #endif
 		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_AudioBitrate;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_AudioChannelLayout_Underlying;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_AudioChannelLayout_MetaData[];
+#endif
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_AudioChannelLayout;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_QMax_MetaData[];
 #endif
@@ -522,6 +721,17 @@ template<> OWLMEDIA_API UScriptStruct* StaticStruct<FOWLFFmpegSettings>()
 	};
 #endif
 	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioBitrate = { "AudioBitrate", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FOWLFFmpegSettings, AudioBitrate), METADATA_PARAMS(Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioBitrate_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioBitrate_MetaData)) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioChannelLayout_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioChannelLayout_MetaData[] = {
+		{ "Category", "Encoder Settings" },
+		{ "Comment", "/* The speaker layout of your audio stream */" },
+		{ "EditCondition", "EncodeAudio" },
+		{ "ModuleRelativePath", "Public/OWLFFmpegOutput.h" },
+		{ "ToolTip", "The speaker layout of your audio stream" },
+	};
+#endif
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioChannelLayout = { "AudioChannelLayout", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FOWLFFmpegSettings, AudioChannelLayout), Z_Construct_UEnum_OWLMedia_EOWLAudioChannelLayout, METADATA_PARAMS(Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioChannelLayout_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioChannelLayout_MetaData)) }; // 986277226
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_QMax_MetaData[] = {
 		{ "Category", "Advanced Encoder Settings" },
@@ -559,6 +769,8 @@ template<> OWLMEDIA_API UScriptStruct* StaticStruct<FOWLFFmpegSettings>()
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_EncodeAudio,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_VideoBitrate,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioBitrate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioChannelLayout_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_AudioChannelLayout,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_QMax,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_QMin,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewProp_GOPSize,
@@ -593,14 +805,15 @@ template<> OWLMEDIA_API UScriptStruct* StaticStruct<FOWLFFmpegSettings>()
 		{ EOWLMediaOutputType_StaticEnum, TEXT("EOWLMediaOutputType"), &Z_Registration_Info_UEnum_EOWLMediaOutputType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1544858785U) },
 		{ EOWLDestinationFormat_StaticEnum, TEXT("EOWLDestinationFormat"), &Z_Registration_Info_UEnum_EOWLDestinationFormat, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3249761440U) },
 		{ EOWLSRTPubKeyLen_StaticEnum, TEXT("EOWLSRTPubKeyLen"), &Z_Registration_Info_UEnum_EOWLSRTPubKeyLen, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3652350211U) },
+		{ EOWLAudioChannelLayout_StaticEnum, TEXT("EOWLAudioChannelLayout"), &Z_Registration_Info_UEnum_EOWLAudioChannelLayout, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 986277226U) },
 	};
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWLMedia_Public_OWLFFmpegOutput_h_Statics::ScriptStructInfo[] = {
 		{ FOWLSRTOptions::StaticStruct, Z_Construct_UScriptStruct_FOWLSRTOptions_Statics::NewStructOps, TEXT("OWLSRTOptions"), &Z_Registration_Info_UScriptStruct_OWLSRTOptions, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FOWLSRTOptions), 2425459726U) },
 		{ FOWLAudioSampleBlock::StaticStruct, Z_Construct_UScriptStruct_FOWLAudioSampleBlock_Statics::NewStructOps, TEXT("OWLAudioSampleBlock"), &Z_Registration_Info_UScriptStruct_OWLAudioSampleBlock, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FOWLAudioSampleBlock), 3146865514U) },
 		{ FOWLEncodedPacket::StaticStruct, Z_Construct_UScriptStruct_FOWLEncodedPacket_Statics::NewStructOps, TEXT("OWLEncodedPacket"), &Z_Registration_Info_UScriptStruct_OWLEncodedPacket, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FOWLEncodedPacket), 2322824884U) },
-		{ FOWLFFmpegSettings::StaticStruct, Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewStructOps, TEXT("OWLFFmpegSettings"), &Z_Registration_Info_UScriptStruct_OWLFFmpegSettings, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FOWLFFmpegSettings), 3818573303U) },
+		{ FOWLFFmpegSettings::StaticStruct, Z_Construct_UScriptStruct_FOWLFFmpegSettings_Statics::NewStructOps, TEXT("OWLFFmpegSettings"), &Z_Registration_Info_UScriptStruct_OWLFFmpegSettings, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FOWLFFmpegSettings), 3191603559U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWLMedia_Public_OWLFFmpegOutput_h_3827939424(TEXT("/Script/OWLMedia"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWLMedia_Public_OWLFFmpegOutput_h_4228167494(TEXT("/Script/OWLMedia"),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWLMedia_Public_OWLFFmpegOutput_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWLMedia_Public_OWLFFmpegOutput_h_Statics::ScriptStructInfo),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWLMedia_Public_OWLFFmpegOutput_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWLMedia_Public_OWLFFmpegOutput_h_Statics::EnumInfo));

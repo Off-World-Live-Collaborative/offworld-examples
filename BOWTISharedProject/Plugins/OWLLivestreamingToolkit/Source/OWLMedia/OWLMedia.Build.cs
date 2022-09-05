@@ -42,7 +42,6 @@ public class OWLMedia : ModuleRules
 				"RHI",
 				"RenderCore",
 				"FFmpeg",
-				"LivestreamingToolkitShaders",
 				"LivestreamingToolkit",
 				"Slate",
 				"SlateCore",

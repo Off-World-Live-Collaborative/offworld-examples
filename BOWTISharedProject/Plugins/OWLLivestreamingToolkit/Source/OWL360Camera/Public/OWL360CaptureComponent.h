@@ -30,7 +30,7 @@ enum class EStreamResolution_360 : uint8 {
 	RS_360_1080p UMETA(DisplayName = "1080p"),
 	/* Cubemap: 2160x1440p; Equirectangular:  2880x1440p; Dome: 1440x1440p; */
 	RS_360_1440p UMETA(DisplayName = "1440p"),
-	/* Cubemap: 4320x2160p; Equirectangular:  3840x2160p; Dome: 2160x2160p; */
+	/* Cubemap: 3240x2160p; Equirectangular:  4320x2160p; Dome: 2160x2160p; */
 	RS_360_2160p UMETA(DisplayName = "2160p"),
 	/* Custom Resolution */
 	RS_360_Custom UMETA(DisplayName = "Custom")

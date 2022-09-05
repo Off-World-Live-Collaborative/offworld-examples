@@ -48,6 +48,69 @@ enum class EOWLSRTPubKeyLen : uint8
 	SRT_PKL_32 UMETA(DisplayName = "32"),
 };
 
+UENUM()
+enum class EOWLAudioChannelLayout : uint8
+{
+	/* 1 Channel */
+	ACL_MONO UMETA(DisplayName = "Mono"),
+	/* 2 Channels */
+	ACL_STEREO UMETA(DisplayName = "Stereo"),
+	/* 3 Channels */
+	ACL_2POINT1 UMETA(DisplayName = "2.1"),
+	/* 3 Channels */
+	ACL_2_1 UMETA(DisplayName = "2 1"), // is the display name ok here ?
+	/* 3 Channels */
+	ACL_SURROUND UMETA(DisplayName = "Surround"),
+	/* 4 Channels */
+	ACL_3POINT1 UMETA(DisplayName = "3.1"),
+	/* 4 Channels */
+	ACL_4POINT0 UMETA(DisplayName = "4.0"),
+	/* 5 Channels */
+	ACL_4POINT1 UMETA(DisplayName = "4.1"),
+	/* 4 Channels */
+	ACL_2_2 UMETA(DisplayName = "2 2"),  // is the display name ok here ?
+	/* 4 Channels */
+	ACL_QUAD UMETA(DisplayName = "Quad"),
+	/* 5 Channels */
+	ACL_5POINT0 UMETA(DisplayName = "5.0"),
+	/* 6 Channels */
+	ACL_5POINT1 UMETA(DisplayName = "5.1"),
+	/* 5 Channels */
+	ACL_5POINT0_BACK UMETA(DisplayName = "5.0 Back"),
+	/* 6 Channels */
+	ACL_5POINT1_BACK UMETA(DisplayName = "5.1 Back"),
+	/* 6 Channels */
+	ACL_6POINT0 UMETA(DisplayName = "6.0"),
+	/* 6 Channels */
+	ACL_6POINT0_FRONT UMETA(DisplayName = "6.0 Front"),
+	/* 6 Channels */
+	ACL_HEXAGONAL UMETA(DisplayName = "Hexagonal"),
+	/* 7 Channels */
+	ACL_6POINT1 UMETA(DisplayName = "6.1"),
+	/* 7 Channels */
+	ACL_6POINT1_BACK UMETA(DisplayName = "6.1 Back"),
+	/* 7 Channels */
+	ACL_6POINT1_FRONT UMETA(DisplayName = "6.1 Front"),
+	/* 7 Channels */
+	ACL_7POINT0 UMETA(DisplayName = "7.0"),
+	/* 7 Channels */
+	ACL_7POINT0_FRONT UMETA(DisplayName = "7.0 Front"),
+	/* 8 Channels */
+	ACL_7POINT1 UMETA(DisplayName = "7.1"),
+	/* 8 Channels */
+	ACL_7POINT1_WIDE UMETA(DisplayName = "7.1 Wide"),
+	/* 8 Channels */
+	ACL_7POINT1_WIDE_BACK UMETA(DisplayName = "7.1 Wide Back"),
+	/* 8 Channels */
+	ACL_OCTAGONAL UMETA(DisplayName = "Octagonal"),
+	/* 16 Channels */
+	ACL_HEXADECAGONAL UMETA(DisplayName = "Hexadecagonal"),
+	/* 2 Channels */
+	ACL_STEREO_DOWNMIX UMETA(DisplayName = "Stereo Downmix"),
+	/* 24 Channels */
+	ACL_22POINT2 UMETA(DisplayName = "22.2"),
+};
+
 USTRUCT(BlueprintType)
 struct OWLMEDIA_API FOWLSRTOptions
 {
@@ -105,6 +168,10 @@ struct OWLMEDIA_API FOWLFFmpegSettings
 	/* The audio bitrate in kbs -- we recommend either 128 or 160 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Encoder Settings", meta=(ClampMin="80", ClampMax="320", EditCondition="EncodeAudio"))
 	int AudioBitrate = 128;
+
+	/* The speaker layout of your audio stream */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Encoder Settings", meta=(EditCondition="EncodeAudio"))
+	EOWLAudioChannelLayout AudioChannelLayout = EOWLAudioChannelLayout::ACL_STEREO;
 
 	/* The maximum  H264 Video 'Q' setting (quality) */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, AdvancedDisplay, Category="Advanced Encoder Settings", meta=(ClampMin="15", ClampMax="50"))
@@ -179,9 +246,9 @@ private:
 	/* Finds the AudioCodec and initialises the AudioCodecContext */
 	bool InitAudioCodec();
 	/* Creates the audio resample context for converting between sample rates */
-	bool InitAudioResampler();
+	bool InitAudioResampler(uint64_t InChannelLayout);
 	/* Allocates arrays of pointers used for handling audio samplerate conversion */
-	bool AllocateConversionBuffers();
+	bool AllocateConversionBuffers(int NumChannels);
 	/* Opens the audio codec context */
 	bool OpenAudio();
 	/* Allocates the audio output frame (which can be re-used each tick) */
@@ -221,6 +288,8 @@ private:
 	static int64 GetTimeNow();
 	void SetSRTOptions();
 	void OnShutdownRequested(bool TryReconnect);
+	uint64_t GetAVAudioChannelLayout(EOWLAudioChannelLayout Layout);
+	int GetNumChannelsFromLayout(EOWLAudioChannelLayout Layout);
 
 private:
 	class FFFmpegRunnable* FFmpegRunnable = nullptr;
@@ -236,7 +305,7 @@ private:
 	// LibAV Audio State
 	AVCodec *AudioCodec = nullptr;
 	struct SwrContext *AudioResampleContext = nullptr;
-	bool bAudioResamplerInitialised = false;
+	bool AudioResamplerChannelChecked = false;
 	AVCodecContext *AudioCodecContext = nullptr;
 	AVFormatContext *OutputFormatContext = nullptr;
 	AVIOContext *OutputIOContext = nullptr;
@@ -254,7 +323,7 @@ private:
 	int InputAudioSampleRate = 48000;
 	int AllChannelsSamplesPerSecond = 48000 * 2;
 	bool AudioBuffersAllocated = false;
-	int InputAudioChannels = 2;
+	EOWLAudioChannelLayout AudioChannelLayout = EOWLAudioChannelLayout::ACL_STEREO;
 	/* Experimentally, the audio clock tends to be around 5ms offset from system clock
 	 * This must be the time for the computation before the audio sample reaches
 	 * our OnSubmixBuffer method.

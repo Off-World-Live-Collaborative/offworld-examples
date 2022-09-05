@@ -9,7 +9,7 @@ extern "C"
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "OWLImageInput.h"
+#include "Tools/OWLImageInput.h"
 #include "OWLFFmpegOutput.h"
 #include "OWLMediaOutput.generated.h"
 

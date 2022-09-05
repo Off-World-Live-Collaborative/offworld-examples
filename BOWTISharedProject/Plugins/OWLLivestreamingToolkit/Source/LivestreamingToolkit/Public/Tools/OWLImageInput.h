@@ -7,14 +7,23 @@
 #include "RHIResources.h"
 #include "Engine/TextureRenderTarget2D.h"
 
+UENUM()
+enum class EOWLOutputType : uint8
+{
+	OT_Media,
+	OT_VirtualWebcam,
+	// todo : we should implement a version for NDI here as well as now we're copying the code
+};
+
 struct FOutputRenderTextures_RHI
 {
 	FTexture2DRHIRef Texture;
 	bool bReadyToRead;
 };
 
+DECLARE_LOG_CATEGORY_EXTERN(LogOWLImageInput, Log, All);
 
-class OWLMEDIA_API OWLImageInput
+class LIVESTREAMINGTOOLKIT_API OWLImageInput
 {
 public:
 	void Destroy();
@@ -28,6 +37,8 @@ private:
 	UTextureRenderTarget2D* SourceRenderTarget = nullptr;
 	FIntPoint Dimensions = FIntPoint(0,0);
 	FCriticalSection RTMutex;
+	EOWLOutputType OutputType = EOWLOutputType::OT_Media;
+	int BytesPerPixel = 4;
 
 private:
 	void EmptyOutputTextures();
@@ -39,11 +50,11 @@ public:
 	 * wait a render tick before accessing the render target and
 	 * writing data to `OutputData`
 	 */
-	void CaptureFrame_RT(UTextureRenderTarget2D* renderTarget);
+	void CaptureFrame_RT();
 	/* Checks resolution and source of render target. If either has changed,
 	 * recreate the output textures
 	 */
-	void InitRenderTargetCapture(UTextureRenderTarget2D* rt);
+	void InitRenderTargetCapture(UTextureRenderTarget2D* rt, EOWLOutputType InOutputType);
 	/* Returns the resolution of the input texture;
 	 * Might be 1px smaller than input RT in each dimension to force even resolution
 	 */

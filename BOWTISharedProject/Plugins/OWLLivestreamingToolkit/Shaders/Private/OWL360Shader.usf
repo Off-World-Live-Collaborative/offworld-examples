@@ -28,10 +28,8 @@ Texture2D BackFace;
 
 // Equi params
 
-Texture2D EquiIntermediateOffset0;
-Texture2D EquiIntermediateOffset180;
-
-SamplerState BilinearClampTextureSampler;
+Texture2D EquiTexture;
+SamplerState BilinearTextureSampler;
 
 // first pass only params:
 float BloomThreshold;
@@ -51,12 +49,9 @@ static const float BleedPercent = 1.01;
 #endif
 
 #if NEEDS_ADDITIVE
-
 // Blur Vertical pass only
-Texture2D VerticalOnlyOffset0;
-Texture2D VerticalOnlyOffset180;
+Texture2D VerticalOnlyEquiTexture;
 #endif
-
 
 // last pass only params:
 Texture2D RightOriginal;
@@ -162,25 +157,25 @@ half4 SampleCube(float3 p)
 
     if (faceNumber == RIGHT_FACE)
     {
-        return RightFace.Sample(BilinearClampTextureSampler, recenterUV(uv));
+        return RightFace.Sample(BilinearTextureSampler, recenterUV(uv));
     }
     if (faceNumber == LEFT_FACE)
     {
-        return LeftFace.Sample(BilinearClampTextureSampler, recenterUV(uv));
+        return LeftFace.Sample(BilinearTextureSampler, recenterUV(uv));
     }
     if (faceNumber == UP_FACE)
     {
-        return UpFace.Sample(BilinearClampTextureSampler, recenterUV(uv));
+        return UpFace.Sample(BilinearTextureSampler, recenterUV(uv));
     }
     if (faceNumber == DOWN_FACE)
     {
-        return DownFace.Sample(BilinearClampTextureSampler, recenterUV(uv));
+        return DownFace.Sample(BilinearTextureSampler, recenterUV(uv));
     }
     if (faceNumber == FRONT_FACE)
     {
-        return FrontFace.Sample(BilinearClampTextureSampler, recenterUV(uv));
+        return FrontFace.Sample(BilinearTextureSampler, recenterUV(uv));
     }
-    return BackFace.Sample(BilinearClampTextureSampler, recenterUV(uv));
+    return BackFace.Sample(BilinearTextureSampler, recenterUV(uv));
 }
 
 
@@ -210,7 +205,7 @@ float3 uvToVector(int faceNumber, float2 uv) {
 
 float4 Sample(Texture2D Face, float2 uv)
 {
-    return Face.Sample(BilinearClampTextureSampler, uv);
+    return Face.Sample(BilinearTextureSampler, uv);
 }
 
 float2 EquiUVToPhiTheta(float2 uv)
@@ -229,27 +224,20 @@ float2 PhiThetaToEquiUV(float2 phiTheta)
 half4 SampleFromEquirectangular(Texture2D Source, float2 phiTheta)
 {
     float2 uv = PhiThetaToEquiUV(phiTheta);
-    return Source.Sample(BilinearClampTextureSampler, uv);
+    return Source.Sample(BilinearTextureSampler, uv);
 }
 
-// Combines offset and original equi at given point
-half4 SampleCompositedEqui(float2 phiTheta)
+half4 SampleEqui(float2 phiTheta)
 {
     // haven't worked out yet why i have to move this around 1.5 PIs
     float phi = fmod(phiTheta.x + 3 * PIH, TWOPI);
     float theta = phiTheta.y;
     float2 uv = PhiThetaToEquiUV(float2(phi, theta));
-    half4 mainSample = EquiIntermediateOffset0.Sample(
-        BilinearClampTextureSampler,
+    half4 mainSample = EquiTexture.Sample(
+        BilinearTextureSampler,
         float2(uv.x, 1.-uv.y)
     );
-    float2 offsetUV = float2(fmod(uv.x + .5, 1.), 1.- uv.y);
-    half4 offsetSample = EquiIntermediateOffset180.Sample(
-        BilinearClampTextureSampler,
-        offsetUV
-    );
-    float blendValue = cos(uv.x * TWOPI) / 2. + .5;
-    return offsetSample * blendValue + mainSample * (1. - blendValue);
+    return mainSample;
 }
 
 
@@ -304,49 +292,24 @@ half4 SampleEquirectangularWithBlur (Texture2D Source, float2 uv)
     return Dest;
 }
 
-
-// Sample the point on an equirectangular plane
-// then threshold
-half4 Prefilter (float2 UV)
-{
-    half4 SceneColor = EquiSampleCube(UV, 0);
-
-    // clamp to avoid artifacts from exceeding fp16 through framebuffer blending of multiple very bright lights
-    SceneColor.rgb = min(float3(256 * 256, 256 * 256, 256 * 256), SceneColor.rgb);
-
-    half3 LinearColor = SceneColor.rgb;
-
-    // todo: make this adjustable (e.g. LUT)
-
-    half TotalLuminance = dot(LinearColor, half3(0.3, 0.59, 0.11));
-    half BloomLuminance = TotalLuminance - max(BloomThreshold, 0);
-    // mask 0..1
-    half BloomAmount = saturate(BloomLuminance / 2.0f);
-
-    return half4(BloomAmount * LinearColor, 0);
-}
-
-
 // Combines the original cube face with the blurred bloom
 half4 AddSrc(Texture2D Original, int faceNumber,  float2 uv)
 {
     half4 OriginalColour = Sample(Original, uv);
-    // initially just sample from the offset 0 equi pass
-    // later blend it nicely to get rid of the edges
     half3 outputColour = OriginalColour.rgb;
     float3 vec = uvToVector(faceNumber, uv);
     float2 phiTheta = VectorToPhiTheta(vec);
-    half3 compositedSample = SampleCompositedEqui(phiTheta).rgb;
-    float colourPush = compositedSample.r + compositedSample.g + compositedSample.b;
+    half3 equiSample = SampleEqui(phiTheta).rgb;
+    float colourPush = equiSample.r + equiSample.g + equiSample.b;
     // perform "fake tonemapping" on the bloom output
     float rgbMultiplier = smoothstep(0.0f, 2.f, colourPush) * (colourPush / 5.);
-    compositedSample += half3(rgbMultiplier * 10., rgbMultiplier * 10., rgbMultiplier* 4.) * 0.2;
+    equiSample += half3(rgbMultiplier * 10., rgbMultiplier * 10., rgbMultiplier* 4.) * 0.2;
     // perform easing of the bloom so the distribution of light and dark is less extreme
 	float bloomEaseMultiplier = 5.;
-	compositedSample += compositedSample * bloomEaseMultiplier * (cos((compositedSample / 100) * PI) / 2 + 0.5);
+	equiSample += equiSample * bloomEaseMultiplier * (cos((equiSample / 100) * PI) / 2 + 0.5);
 	// Multiply intensity to make it more inline with ue4's behaviour
     float bloomIntensityMultiplyer = 1.325f;
-	return half4(clamp(outputColour, 0., 30.) + (compositedSample * BloomIntensity * bloomIntensityMultiplyer), OriginalColour.a);
+	return half4(clamp(outputColour, 0., 30.) + (equiSample * BloomIntensity * bloomIntensityMultiplyer), OriginalColour.a);
 }
 
 float2 OverscanCompensation(float2 uv)
@@ -360,52 +323,47 @@ float2 OverscanCompensation(float2 uv)
 
 ////////////// PIXEL SHADERS
 
+// Sample the point on an equirectangular plane
+// then threshold
 void HighestBrightnessThresholdPS(
     in float2 uv : TEXCOORD0,
     // Thresholded equirectangular output
-    out float4 OutEquiUOffset0 : SV_Target0,
-    // Thresholded equirectangular output offset 180 degrees in phi
-    out float4 OutEquiUOffset180 : SV_Target1
+    out float4 OutEqui : SV_Target0
 )
 {
-    OutEquiUOffset0 = Prefilter(uv);
-    float2 uvOffsetBy180 = float2(
-        fmod(uv.x + .5, 1),
-        uv.y
-    );
-    OutEquiUOffset180 = Prefilter(uvOffsetBy180);
+    half4 SceneColor = EquiSampleCube(uv, 0);
+    // clamp to avoid artifacts from exceeding fp16 through framebuffer blending of multiple very bright lights
+    SceneColor.rgb = min(float3(256 * 256, 256 * 256, 256 * 256), SceneColor.rgb);
+    half3 LinearColor = SceneColor.rgb;
+    // todo: make this adjustable (e.g. LUT)
+    half TotalLuminance = dot(LinearColor, half3(0.3, 0.59, 0.11));
+    half BloomLuminance = TotalLuminance - max(BloomThreshold, 0);
+    // mask 0..1
+    half BloomAmount = saturate(BloomLuminance / 2.0f);
+    OutEqui = half4(BloomAmount * LinearColor, 0);
 }
 
 void DownSamplePS(
     in float2 uv : TEXCOORD0,
     // equirectangular output
-    out float4 OutEquiUOffset0 : SV_Target0,
-    // equirectangular output offset 180 degrees in phi
-    out float4 OutEquiUOffset180 : SV_Target1
+    out float4 OutEqui : SV_Target0
 )
 {
-    OutEquiUOffset0 = Sample(EquiIntermediateOffset0, uv);
-    OutEquiUOffset180 = Sample(EquiIntermediateOffset180, uv);
+    OutEqui = Sample(EquiTexture, uv);
 }
-
 
 void BlurPS(
     in float2 uv : TEXCOORD0,
     // equirectangular output
-    out float4 OutEquiUOffset0 : SV_Target0,
-    // equirectangular output offset 180 degrees in phi
-    out float4 OutEquiUOffset180 : SV_Target1
+    out float4 OutEqui : SV_Target0
 )
 {
-    half3 Offset0 = SampleEquirectangularWithBlur(EquiIntermediateOffset0, uv).rgb;
-    half3 Offset180 = SampleEquirectangularWithBlur(EquiIntermediateOffset180, uv).rgb;
+    half3 Equi = SampleEquirectangularWithBlur(EquiTexture, uv).rgb;
 
     #if NEEDS_ADDITIVE
-        OutEquiUOffset0 = half4(Offset0 + Sample(VerticalOnlyOffset0, uv).rgb, 1);
-        OutEquiUOffset180 = half4(Offset180 + Sample(VerticalOnlyOffset180, uv).rgb, 1);
+        OutEqui = half4(Equi + Sample(VerticalOnlyEquiTexture, uv).rgb, 1);
     #else
-        OutEquiUOffset0 = half4(Offset0, 1);
-        OutEquiUOffset180 = half4(Offset180, 1);
+        OutEqui = half4(Equi, 1);
     #endif
 }
 
@@ -450,14 +408,14 @@ void CubeMapOutputPS(
         if (uv.y <= 0.5)
         {
             OutColor = RightFace.Sample(
-                BilinearClampTextureSampler,
+                BilinearTextureSampler,
                 OverscanCompensation(float2(uv.x * 3., uv.y * 2.))
             );
         }
         else
         {
             OutColor = DownFace.Sample(
-                BilinearClampTextureSampler,
+                BilinearTextureSampler,
                 OverscanCompensation(float2(uv.x * 3., (uv.y - 0.5) * 2.))
             );
         }
@@ -467,14 +425,14 @@ void CubeMapOutputPS(
         if (uv.y <= 0.5)
         {
             OutColor = LeftFace.Sample(
-                BilinearClampTextureSampler,
+                BilinearTextureSampler,
                 OverscanCompensation(float2((uv.x - THIRD) * 3., uv.y * 2.))
             );
         }
         else
         {
             OutColor = FrontFace.Sample(
-                BilinearClampTextureSampler,
+                BilinearTextureSampler,
                 OverscanCompensation(float2((uv.x - THIRD) * 3., (uv.y - 0.5) * 2.))
             );
         }
@@ -484,14 +442,14 @@ void CubeMapOutputPS(
         if (uv.y <= 0.5)
         {
             OutColor = UpFace.Sample(
-                BilinearClampTextureSampler,
+                BilinearTextureSampler,
                 OverscanCompensation(float2((uv.x - 2. * THIRD) * 3., uv.y * 2.))
             );
         }
         else
         {
             OutColor = BackFace.Sample(
-                BilinearClampTextureSampler,
+                BilinearTextureSampler,
                 OverscanCompensation(float2((uv.x - 2. * THIRD) * 3.,(uv.y - 0.5) * 2.))
             );
         }

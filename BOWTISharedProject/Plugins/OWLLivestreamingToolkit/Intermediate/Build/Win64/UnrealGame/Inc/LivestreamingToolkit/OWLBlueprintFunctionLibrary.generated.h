@@ -25,6 +25,8 @@ class UTextureRenderTarget2D;
 	DECLARE_FUNCTION(execDrawUMGToRenderTarget); \
 	DECLARE_FUNCTION(execGetIsRuntimeViewportRendering); \
 	DECLARE_FUNCTION(execGetIsEditorViewportRendering); \
+	DECLARE_FUNCTION(execSetRuntimeViewportRendering); \
+	DECLARE_FUNCTION(execSetEditorViewportRendering); \
 	DECLARE_FUNCTION(execToggleRuntimeViewportRendering); \
 	DECLARE_FUNCTION(execToggleEditorViewportRendering);
 
@@ -37,6 +39,8 @@ class UTextureRenderTarget2D;
 	DECLARE_FUNCTION(execDrawUMGToRenderTarget); \
 	DECLARE_FUNCTION(execGetIsRuntimeViewportRendering); \
 	DECLARE_FUNCTION(execGetIsEditorViewportRendering); \
+	DECLARE_FUNCTION(execSetRuntimeViewportRendering); \
+	DECLARE_FUNCTION(execSetEditorViewportRendering); \
 	DECLARE_FUNCTION(execToggleRuntimeViewportRendering); \
 	DECLARE_FUNCTION(execToggleEditorViewportRendering);
 

@@ -1,9 +1,9 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "v0.108.0-ue5.0.0",
+	"VersionName": "v0.116.0-ue5.0.0",
 	"FriendlyName": "Off World Live Livestreaming Toolkit",
-	"Description": "Tools for live-streaming video and audio into and out of Unreal using Spout and NDI",
+	"Description": "Tools for live-streaming video, alpha and audio into and out of Unreal Engine via NDI, Spout, Virtual Webcam, RTMP and SRT and recording via MP4, MOV, AVI etc.",
 	"Category": "Livestreaming",
 	"CreatedBy": "OffWorldLive",
 	"CreatedByURL": "https://offworld.live/",
@@ -71,6 +71,14 @@
 			"Name": "OWLMedia",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "OWLVirtualWebcam",
+			"Type": "Runtime",
+			"LoadingPhase": "None",
 			"PlatformAllowList": [
 				"Win64"
 			]

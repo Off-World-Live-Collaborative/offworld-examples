@@ -18,25 +18,37 @@ public:
 	/**
 	* toggle the viewport that renders at Editor time
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Off World Live Spout Sender Settings")
+	UFUNCTION(BlueprintCallable, Category = "OWL Livestreaming Toolkit")
 	static void ToggleEditorViewportRendering();
 
 	/**
 	* toggle the viewport that render at PIE or Standalone game time
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Off World Live Spout Sender Settings")
+	UFUNCTION(BlueprintCallable, Category = "OWL Livestreaming Toolkit")
 	static void ToggleRuntimeViewportRendering();
+
+	/**
+	* enable/ disable the viewport that renders at Editor time
+	*/
+	UFUNCTION(BlueprintCallable, Category = "OWL Livestreaming Toolkit")
+	static void SetEditorViewportRendering(bool EnableViewportRendering);
+
+	/**
+	* enable/ disable the viewport that renders at PIE or Standalone game time
+	*/
+	UFUNCTION(BlueprintCallable, Category = "OWL Livestreaming Toolkit")
+	static void SetRuntimeViewportRendering(bool EnableViewportRendering);
 
 	/**
 	* rendering status of the viewport that renders at Editor time
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Off World Live Spout Sender Settings")
+	UFUNCTION(BlueprintCallable, Category = "OWL Livestreaming Toolkit")
 	static bool GetIsEditorViewportRendering();
 
 	/**
 	* rendering status of the viewport at PIE or Standalone game time
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Off World Live Spout Sender Settings")
+	UFUNCTION(BlueprintCallable, Category = "OWL Livestreaming Toolkit")
 	static bool GetIsRuntimeViewportRendering();
 
 	/**

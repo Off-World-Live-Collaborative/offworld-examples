@@ -56,6 +56,7 @@ public class LivestreamingToolkitEditor : ModuleRules
 				"OWL360Camera",
 				"OWLMedia",
 				"BlueprintGraph",
+				"OWLVirtualWebcam",
 				// ... add private dependencies that you statically link with here ...
 			}
 		);

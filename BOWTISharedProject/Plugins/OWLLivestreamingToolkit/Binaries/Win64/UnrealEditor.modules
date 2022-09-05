@@ -9,6 +9,7 @@
 		"OWLCamera": "UnrealEditor-OWLCamera.dll",
 		"OWLMedia": "UnrealEditor-OWLMedia.dll",
 		"OWLNDI": "UnrealEditor-OWLNDI.dll",
-		"OWLSpout": "UnrealEditor-OWLSpout.dll"
+		"OWLSpout": "UnrealEditor-OWLSpout.dll",
+		"OWLVirtualWebcam": "UnrealEditor-OWLVirtualWebcam.dll"
 	}
 }

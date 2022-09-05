@@ -37,15 +37,19 @@ private:
 	bool CreateSetup() const;
 	AActor* CreateCaptureActor(FString& UniqueCameraName) const;
 	class AOWLSpoutSenderManager* FindOrCreateSpoutSenderManager() const;
-	void CreateSpoutSender(AActor* NewCapture, FString UniqueCameraName) const;
+	void CreateSpoutSender(UTextureRenderTarget2D* TextureTarget, FString UniqueCameraName) const;
 	class AOWLNDISenderManager* FindOrCreateNDISenderManager() const;
-	void CreateNDISender(AActor* NewCapture, FString UniqueCameraName) const;
-	
+	void CreateNDISender(UTextureRenderTarget2D* TextureTarget, FString UniqueCameraName) const;
+	void CreateMediaOutput(UTextureRenderTarget2D* TextureTarget) const;
+	void CreateVirtualCam(UTextureRenderTarget2D* TextureTarget) const;
+
 	TSharedPtr<SComboBox<TSharedPtr<FString>>> CameraTypeComboBox;
 	TArray<TSharedPtr<FString>> CameraTypeOptions;
 
 	TSharedPtr<SCheckBox> SpoutCheckBox;
 	TSharedPtr<SCheckBox> NDICheckBox;
+	TSharedPtr<SCheckBox> MediaOutputCheckBox;
+	TSharedPtr<SCheckBox> VirtualCamCheckBox;
 
 	FString CinecamName = FString(TEXT("OWL Cinecam"));
 	FString Camera360Name = FString(TEXT("OWL 360 Camera"));
@@ -55,4 +59,5 @@ private:
 	virtual FReply OnKeyDown(const FGeometry& MyGeometry, const FKeyEvent& InKeyEvent) override;
 
 	bool CanCreateSetup() const;
+	UTextureRenderTarget2D* GetRenderTarget(AActor* CaptureActor) const;
 };
