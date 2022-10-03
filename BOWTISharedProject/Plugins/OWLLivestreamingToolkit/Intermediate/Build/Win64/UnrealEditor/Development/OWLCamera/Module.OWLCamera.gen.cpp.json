@@ -1,0 +1,35 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\development\\owlcamera\\module.owlcamera.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\toolkit-tmp\\intermediate\\build\\win64\\buildtempeditor\\development\\unrealed\\sharedpch.unrealed.shadowerrors.h.pch",
+        "Includes": [
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\development\\owlcamera\\definitions.owlcamera.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owlcamera\\owlcamera.init.gen.cpp",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owlcamera\\owlcapturecomponent.gen.cpp",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\source\\owlcamera\\public\\owlcapturecomponent.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\engine\\texturerendertarget2d.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\engine\\texturerendertarget.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\texturerendertarget.generated.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\texturerendertarget2d.generated.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\slate\\public\\widgets\\svirtualwindow.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\slatecore\\public\\input\\hittestgrid.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\components\\scenecapturecomponent.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\scenecapturecomponent.generated.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owlcamera\\owlcapturecomponent.generated.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owlcamera\\owlcinecamcapture.gen.cpp",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\source\\owlcamera\\public\\owlcinecamcapture.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\cinematiccamera\\public\\cinecameraactor.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\camera\\cameraactor.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\cameraactor.generated.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\cinematiccamera\\cinecameraactor.generated.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owlcamera\\owlcinecamcapture.generated.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owlcamera\\owlviewportcapture.gen.cpp",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\source\\owlcamera\\public\\owlviewportcapture.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owlcamera\\owlviewportcapture.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

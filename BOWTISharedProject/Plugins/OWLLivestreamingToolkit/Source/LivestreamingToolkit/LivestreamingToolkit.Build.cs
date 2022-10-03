@@ -26,12 +26,17 @@ public class LivestreamingToolkit : ModuleRules
 		string AuthUrl = GetOffWorldString("AuthURL", "https://plugin-api.offworld.live");
 		PublicDefinitions.Add("OWL_AUTH_URL=\"" + AuthUrl + "\"");
 
-		string ReleaseDate = "2021-07-22T11:22:00.000Z";
+		string ReleaseDate = "";
 		string ReleaseBuildEnv = System.Environment.GetEnvironmentVariable("RELEASE_BUILD");
 		if (ReleaseBuildEnv == null || ReleaseBuildEnv == "")
 		{
 			ReleaseDate = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
 		}
+		else
+		{
+			ReleaseDate = ReleaseBuildEnv;
+		}
+		DateTime.Parse(ReleaseDate);
 		PublicDefinitions.Add("RELEASE_DATE=" + ReleaseDate);
 
 		PublicDefinitions.Add("OFFWORLDLIVE_DEBUG=" + (GetOffWorldBoolean("Debug", false) ? "1" : "0"));
@@ -96,7 +101,7 @@ public class LivestreamingToolkit : ModuleRules
 		{
 			RuntimeDependencies.Add(StagingPath, StagedFileType.NonUFS);
 		}
-		else if(IsStaging)
+		else if (IsStaging)
 		{
 			if (IsStaging)
 			{

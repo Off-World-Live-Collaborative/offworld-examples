@@ -1,0 +1,18 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\debuggame\\owl360camera\\module.owl360camera.gen.2_of_2.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\toolkit-tmp\\intermediate\\build\\win64\\buildtempeditor\\debuggame\\engine\\sharedpch.engine.nonoptimized.shadowerrors.h.pch",
+        "Includes": [
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\debuggame\\owl360camera\\definitions.owl360camera.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owl360camera\\postprocesshelpers.gen.cpp",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\source\\owl360camera\\public\\postprocessing\\postprocesshelpers.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\source\\owl360camera\\public\\postprocessing\\owl360postprocesssettings.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owl360camera\\owl360postprocesssettings.generated.h",
+            "c:\\toolkit-tmp\\plugins\\owllivestreamingtoolkit\\intermediate\\build\\win64\\unrealeditor\\inc\\owl360camera\\postprocesshelpers.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

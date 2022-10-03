@@ -22,7 +22,7 @@ public class OWLNDI : ModuleRules
 
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				"ThirdParty/NDI/Includes",
+				"ThirdParty/NDIRaw/Includes",
 				"OWLNDI/Private",
 				"LivestreamingToolkit/Private/Tools",
 				"LivestreamingToolkit/Public/Tools",
@@ -34,7 +34,7 @@ public class OWLNDI : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"NDI",
+				"NDIRaw",
 				// ... add other public dependencies that you statically link with here ...
 			}
 		);
@@ -49,7 +49,7 @@ public class OWLNDI : ModuleRules
 				"RHICore",
 				"RenderCore",
 				"Projects",
-				"NDI",
+				"NDIRaw",
 				"LivestreamingToolkitShaders",
 				"LivestreamingToolkit",
 				"Json",
@@ -70,7 +70,7 @@ public class OWLNDI : ModuleRules
 		if ((Target.Platform == UnrealTargetPlatform.Win64))
 		{
 
-		
+
 		}
 	}
 	public JsonObject GetOffWorldSettings()

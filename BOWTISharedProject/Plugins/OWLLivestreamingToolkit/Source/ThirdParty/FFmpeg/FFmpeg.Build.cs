@@ -50,6 +50,8 @@ public class FFmpeg : ModuleRules
 			// DLLs
 			//---------------------------------------------------------------------------
 			string[] dlls = {
+				"libcrypto-3-x64.dll",
+				"libssl-3-x64.dll",
 				"avutil-56.dll",
 				"avdevice-58.dll",
 				"swresample-3.dll",

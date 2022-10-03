@@ -13,7 +13,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define OWLNDI_OWLNDIFinder_generated_h
 
-#define FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWLNDI_Public_OWLNDIFinder_h_19_GENERATED_BODY \
+#define FID_toolkit_tmp_Plugins_OWLLivestreamingToolkit_Source_OWLNDI_Public_OWLNDIFinder_h_19_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FNDISource_Statics; \
 	static class UScriptStruct* StaticStruct();
 
@@ -21,7 +21,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 template<> OWLNDI_API UScriptStruct* StaticStruct<struct FNDISource>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_HostProject_Plugins_OWLLivestreamingToolkit_Source_OWLNDI_Public_OWLNDIFinder_h
+#define CURRENT_FILE_ID FID_toolkit_tmp_Plugins_OWLLivestreamingToolkit_Source_OWLNDI_Public_OWLNDIFinder_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
