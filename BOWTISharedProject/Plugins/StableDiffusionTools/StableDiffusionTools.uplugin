@@ -1,0 +1,60 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "StableDiffusionTools",
+	"Description": "Create images in-editor using AI image generation models such as Stable Diffusion.",
+	"Category": "Editor",
+	"CreatedBy": "Byron Mallett",
+	"CreatedByURL": "https://github.com/Mystfit/Unreal-StableDiffusionTools",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": true,
+	"WhitelistPlatforms": [
+		"Win64"
+	],
+	"Plugins": [
+		{
+			"Name": "RemoteSession",
+			"Enabled": true
+		},
+		{
+			"Name": "PythonScriptPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "MovieRenderPipeline",
+			"Enabled": true
+		},
+		{
+			"Name": "ActorLayerUtilities",
+			"Enabled":  true
+		}
+	],
+	"Modules": [
+		{
+			"Name": "StableDiffusionTools",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
+		},
+		{
+			"Name": "StableDiffusionToolsEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
+		},
+		{
+			"Name": "StableDiffusionSequencer",
+			"Type": "Runtime",
+			"LoadingPhase": "PostEngineInit"
+		},
+		{
+			"Name": "StableDiffusionSequencerEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
+		}
+	]
+}
